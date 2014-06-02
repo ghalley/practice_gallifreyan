@@ -89,15 +89,15 @@ void transliterate(){
   int sentences=1;
   for (int i=0;i<english.length();i++) {
     
-    if (english.charAt(i)=='c') {
+    if (english.charAt(i)=="c") {
       text("ERROR: Please replace every C with a K or an S.",15,60);
       return;
     }
-    if (english.charAt(i)==' ') {
+    if (english.charAt(i)==" ") {
       spaces++;
     }
-    if ((english.charAt(i)=='.'||english.charAt(i)=='!'||english.charAt(i)=='?')&&i<english.length()-1) {
-      if (english.charAt(i+1)==' ') {
+    if ((english.charAt(i)=="."||english.charAt(i)=="!"||english.charAt(i)=="?")&&i<english.length()-1) {
+      if (english.charAt(i+1)==" ") {
         sentences++;
       }
     }
@@ -122,7 +122,7 @@ void writeSentence(int type) {
   float1=0;
   float2=0;
   float charCount=0;
-  if(english.charAt(english.length()-1)==' '){
+  if(english.charAt(english.length()-1)==" "){
     String oldenglish=english;
     english="";
     for(int n=0;n<oldenglish.length()-1;n++){
@@ -146,11 +146,11 @@ void writeSentence(int type) {
     for (int i=0;i<Sentence[j].length();i++) {
       if (i!=0) {
         if (Sentence[j].charAt(i)==Sentence[j].charAt(i-1)) {
-          word[word.length-1]=word[word.length-1]+'@';
+          word[word.length-1]=word[word.length-1]+"@";
           continue;
         }
       }
-      if (Sentence[j].charAt(i)=='a'||Sentence[j].charAt(i)=='e'||Sentence[j].charAt(i)=='i'||Sentence[j].charAt(i)=='o'||Sentence[j].charAt(i)=='u') {
+      if (Sentence[j].charAt(i)=="a"||Sentence[j].charAt(i)=="e"||Sentence[j].charAt(i)=="i"||Sentence[j].charAt(i)=="o"||Sentence[j].charAt(i)=="u") {
         if (vowel) {
           word=append(word, str(Sentence[j].charAt(i)));
         }
@@ -159,7 +159,7 @@ void writeSentence(int type) {
         }
         vowel=true;
       }
-      else if (Sentence[j].charAt(i)=='.'||Sentence[j].charAt(i)=='?'||Sentence[j].charAt(i)=='!'||Sentence[j].charAt(i)=='"'||Sentence[j].charAt(i)=="'".charAt(0)||Sentence[j].charAt(i)=='-'||Sentence[j].charAt(i)==','||Sentence[j].charAt(i)==';'||Sentence[j].charAt(i)==':') {
+      else if (Sentence[j].charAt(i)=="."||Sentence[j].charAt(i)=="?"||Sentence[j].charAt(i)=="!"||Sentence[j].charAt(i)=="\""||Sentence[j].charAt(i)=="'".charAt(0)||Sentence[j].charAt(i)=="-"||Sentence[j].charAt(i)==","||Sentence[j].charAt(i)==";"||Sentence[j].charAt(i)==":") {
         if(Sentence[j].charAt(i)=="'".charAt(0)){
           apostrophes[j][i]=true;
         }else{
@@ -168,7 +168,7 @@ void writeSentence(int type) {
       }
       else {
         word=append(word, str(Sentence[j].charAt(i)));
-        if (Sentence[j].charAt(i)=='t'||Sentence[j].charAt(i)=='$'||Sentence[j].charAt(i)=='r'||Sentence[j].charAt(i)=='s'||Sentence[j].charAt(i)=='v'||Sentence[j].charAt(i)=='w') {
+        if (Sentence[j].charAt(i)=="t"||Sentence[j].charAt(i)=="$"||Sentence[j].charAt(i)=="r"||Sentence[j].charAt(i)=="s"||Sentence[j].charAt(i)=="v"||Sentence[j].charAt(i)=="w") {
           vowel=true;
         }
         else {
@@ -215,34 +215,34 @@ void writeSentence(int type) {
     float pX = width/2+cos(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*sentenceRadius;
     float pY = height/2+sin(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*sentenceRadius;
     switch(punctuation[i]){
-      case '.':
+      case ".":
         ellipse(pX,pY,20,20);
         break;
-      case '?':
+      case "?":
         makeDots(width/2,height/2,sentenceRadius*1.4,2,-1.2,0.1);
         break;
-      case '!':
+      case "!":
         makeDots(width/2,height/2,sentenceRadius*1.4,3,-1.2,0.1);
         break;
-      case '"':
+      case "\"":
         line(width/2+cos(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*sentenceRadius,height/2+sin(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*sentenceRadius,width/2+cos(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*(sentenceRadius+20),height/2+sin(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*(sentenceRadius+20));
         break;
-      case '-':
+      case "-":
         line(width/2+cos(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*sentenceRadius,height/2+sin(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*sentenceRadius,width/2+cos(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*(sentenceRadius+20),height/2+sin(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*(sentenceRadius+20));
         line(width/2+cos(pos+(sentence[i].length+sentence[nextIndex].length+0.3)/(2*charCount)*PI)*sentenceRadius,height/2+sin(pos+(sentence[i].length+sentence[nextIndex].length+0.2)/(2*charCount)*PI)*sentenceRadius,width/2+cos(pos+(sentence[i].length+sentence[nextIndex].length+0.2)/(2*charCount)*PI)*(sentenceRadius+20),height/2+sin(pos+(sentence[i].length+sentence[nextIndex].length+0.3)/(2*charCount)*PI)*(sentenceRadius+20));
         line(width/2+cos(pos+(sentence[i].length+sentence[nextIndex].length-0.3)/(2*charCount)*PI)*sentenceRadius,height/2+sin(pos+(sentence[i].length+sentence[nextIndex].length-0.2)/(2*charCount)*PI)*sentenceRadius,width/2+cos(pos+(sentence[i].length+sentence[nextIndex].length-0.2)/(2*charCount)*PI)*(sentenceRadius+20),height/2+sin(pos+(sentence[i].length+sentence[nextIndex].length-0.3)/(2*charCount)*PI)*(sentenceRadius+20));
         break;
-      case ',':
+      case ",":
         fill(fg);
         ellipse(pX,pY,20,20);
         noFill();
         break;
-      case ';':
+      case ";":
         fill(fg);
         ellipse(width/2+cos(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*sentenceRadius-10,height/2+sin(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*sentenceRadius-10,10,10);
         noFill();
         break;
-      case ':':
+      case ":":
         ellipse(pX,pY,25,25);
         strokeWeight(2);
         ellipse(pX,pY,15,15);
@@ -282,10 +282,9 @@ void writeSentence(int type) {
     if (index==sentence[i].length) {
       index=0;
     }
-    println(i);
-    println(sentence.length);
+
     char tempChar=sentence[i][index].charAt(0);
-    if ((tempChar=='t'||tempChar=='$'||tempChar=='r'||tempChar=='s'||tempChar=='v'||tempChar=='w')&&type>0) {
+    if ((tempChar=="t"||tempChar=="$"||tempChar=="r"||tempChar=="s"||tempChar=="v"||tempChar=="w")&&type>0) {
       nested[i][index]=true;
       wordRadius[i]=constrain(wordRadius[i]*1.2, 0, maxRadius*scaleFactor);
       while (dist (x[i], y[i], x[otherIndex], y[otherIndex])>wordRadius[i]+wordRadius[otherIndex]) {
@@ -342,17 +341,17 @@ void writeSentence(int type) {
 
       //single vowels
 
-      if (sentence[i][j].charAt(0)=='a') {
+      if (sentence[i][j].charAt(0)=="a") {
         tempX=x[i]+cos(pos)*(wordRadius[i]+letterRadius/2);
         tempY=y[i]+sin(pos)*(wordRadius[i]+letterRadius/2);
         ellipse(tempX, tempY, letterRadius, letterRadius);
       }
-      else if (sentence[i][j].charAt(0)=='e') {
+      else if (sentence[i][j].charAt(0)=="e") {
         tempX=x[i]+cos(pos)*(wordRadius[i]);
         tempY=y[i]+sin(pos)*(wordRadius[i]);
         ellipse(tempX, tempY, letterRadius, letterRadius);
       }
-      else if (sentence[i][j].charAt(0)=='i') {
+      else if (sentence[i][j].charAt(0)=="i") {
         tempX=x[i]+cos(pos)*(wordRadius[i]);
         tempY=y[i]+sin(pos)*(wordRadius[i]);
         ellipse(tempX, tempY, letterRadius, letterRadius);
@@ -362,12 +361,12 @@ void writeSentence(int type) {
         arcEnd=append(arcEnd, pos+3*PI/2);
         lineRad=append(lineRad, letterRadius);
       }
-      else if (sentence[i][j].charAt(0)=='o') {
+      else if (sentence[i][j].charAt(0)=="o") {
         tempX=x[i]+cos(pos)*(wordRadius[i]-letterRadius/1.6);
         tempY=y[i]+sin(pos)*(wordRadius[i]-letterRadius/1.6);
         ellipse(tempX, tempY, letterRadius, letterRadius);
       }
-      else if (sentence[i][j].charAt(0)=='u') {
+      else if (sentence[i][j].charAt(0)=="u") {
         tempX=x[i]+cos(pos)*(wordRadius[i]);
         tempY=y[i]+sin(pos)*(wordRadius[i]);
         ellipse(tempX, tempY, letterRadius, letterRadius);
@@ -389,7 +388,7 @@ void writeSentence(int type) {
 
           //double vowels
 
-          if (sentence[i][j].charAt(1)=='@') {
+          if (sentence[i][j].charAt(1)=="@") {
             ellipse(tempX, tempY, letterRadius*1.3, letterRadius*1.3);
           }
         }
@@ -398,24 +397,24 @@ void writeSentence(int type) {
 
         // consonants
 
-        if (sentence[i][j].charAt(0)=='b'||sentence[i][j].charAt(0)=='#'||sentence[i][j].charAt(0)=='d'||sentence[i][j].charAt(0)=='f'||sentence[i][j].charAt(0)=='g'||sentence[i][j].charAt(0)=='h') {
+        if (sentence[i][j].charAt(0)=="b"||sentence[i][j].charAt(0)=="#"||sentence[i][j].charAt(0)=="d"||sentence[i][j].charAt(0)=="f"||sentence[i][j].charAt(0)=="g"||sentence[i][j].charAt(0)=="h") {
           tempX=x[i]+cos(pos)*(wordRadius[i]-letterRadius*0.95);
           tempY=y[i]+sin(pos)*(wordRadius[i]-letterRadius*0.95);
           makeArcs(tempX, tempY, x[i], y[i], wordRadius[i], letterRadius, pos-PI/sentence[i].length, pos+PI/sentence[i].length);
           int lines=0;
-          if (sentence[i][j].charAt(0)=='#') {
+          if (sentence[i][j].charAt(0)=="#") {
             makeDots(tempX, tempY, letterRadius, 2, pos, 1);
           }
-          else if (sentence[i][j].charAt(0)=='d') {
+          else if (sentence[i][j].charAt(0)=="d") {
             makeDots(tempX, tempY, letterRadius, 3, pos, 1);
           }
-          else if (sentence[i][j].charAt(0)=='f') {
+          else if (sentence[i][j].charAt(0)=="f") {
             lines=3;
           }
-          else if (sentence[i][j].charAt(0)=='g') {
+          else if (sentence[i][j].charAt(0)=="g") {
             lines=1;
           }
-          else if (sentence[i][j].charAt(0)=='h') {
+          else if (sentence[i][j].charAt(0)=="h") {
             lines=2;
           }
           for (int k=0;k<lines;k++) {
@@ -425,9 +424,10 @@ void writeSentence(int type) {
             arcEnd=append(arcEnd, pos+TWO_PI-0.5);
             lineRad=append(lineRad, letterRadius*2);
           }
+
           if (sentence[i][j].length()>1) {
             int vowelIndex=1;
-            if (sentence[i][j].charAt(1)=='@') {
+            if (sentence[i][j].charAt(1)=="@") {
               makeArcs(tempX, tempY, x[i], y[i], wordRadius[i], letterRadius*1.3, pos+TWO_PI, pos-TWO_PI);
               vowelIndex=2;
             }
@@ -435,15 +435,15 @@ void writeSentence(int type) {
               pos-=TWO_PI/sentence[i].length;
               continue;
             }
-            if (sentence[i][j].charAt(vowelIndex)=='a') {
+            if (sentence[i][j].charAt(vowelIndex)=="a") {
               tempX=x[i]+cos(pos)*(wordRadius[i]+letterRadius/2);
               tempY=y[i]+sin(pos)*(wordRadius[i]+letterRadius/2);
               ellipse(tempX, tempY, letterRadius, letterRadius);
             }
-            else if (sentence[i][j].charAt(vowelIndex)=='e') {
+            else if (sentence[i][j].charAt(vowelIndex)=="e") {
               ellipse(tempX, tempY, letterRadius, letterRadius);
             }
-            else if (sentence[i][j].charAt(vowelIndex)=='i') {
+            else if (sentence[i][j].charAt(vowelIndex)=="i") {
               ellipse(tempX, tempY, letterRadius, letterRadius);
               lineX=append(lineX, tempX);
               lineY=append(lineY, tempY);
@@ -451,12 +451,12 @@ void writeSentence(int type) {
               arcEnd=append(arcEnd, pos+3*PI/2);
               lineRad=append(lineRad, letterRadius);
             }
-            else if (sentence[i][j].charAt(vowelIndex)=='o') {
+            else if (sentence[i][j].charAt(vowelIndex)=="o") {
               tempX=x[i]+cos(pos)*(wordRadius[i]-letterRadius*2);
               tempY=y[i]+sin(pos)*(wordRadius[i]-letterRadius*2);
               ellipse(tempX, tempY, letterRadius, letterRadius);
             }
-            else if (sentence[i][j].charAt(vowelIndex)=='u') {
+            else if (sentence[i][j].charAt(vowelIndex)=="u") {
               ellipse(tempX, tempY, letterRadius, letterRadius);
               lineX=append(lineX, tempX);
               lineY=append(lineY, tempY);
@@ -465,31 +465,31 @@ void writeSentence(int type) {
               lineRad=append(lineRad, letterRadius);
             }
             if (sentence[i][j].length()==(vowelIndex+2)) {
-              if (sentence[i][j].charAt(vowelIndex+1)=='@') {
+              if (sentence[i][j].charAt(vowelIndex+1)=="@") {
                 ellipse(tempX, tempY, letterRadius*1.3, letterRadius*1.3);
               }
             }
           }
         }
-        if (sentence[i][j].charAt(0)=='j'||sentence[i][j].charAt(0)=='k'||sentence[i][j].charAt(0)=='l'||sentence[i][j].charAt(0)=='m'||sentence[i][j].charAt(0)=='n'||sentence[i][j].charAt(0)=='p') {
+        if (sentence[i][j].charAt(0)=="j"||sentence[i][j].charAt(0)=="k"||sentence[i][j].charAt(0)=="l"||sentence[i][j].charAt(0)=="m"||sentence[i][j].charAt(0)=="n"||sentence[i][j].charAt(0)=="p") {
           tempX=x[i]+cos(pos)*(wordRadius[i]-letterRadius);
           tempY=y[i]+sin(pos)*(wordRadius[i]-letterRadius);
           ellipse(tempX, tempY, letterRadius*1.9, letterRadius*1.9);
           arc(x[i], y[i], wordRadius[i]*2, wordRadius[i]*2, pos-PI/sentence[i].length, pos+PI/sentence[i].length);
           int lines=0;
-          if (sentence[i][j].charAt(0)=='k') {
+          if (sentence[i][j].charAt(0)=="k") {
             makeDots(tempX, tempY, letterRadius, 2, pos, 1);
           }
-          else if (sentence[i][j].charAt(0)=='l') {
+          else if (sentence[i][j].charAt(0)=="l") {
             makeDots(tempX, tempY, letterRadius, 3, pos, 1);
           }
-          else if (sentence[i][j].charAt(0)=='m') {
+          else if (sentence[i][j].charAt(0)=="m") {
             lines=3;
           }
-          else if (sentence[i][j].charAt(0)=='n') {
+          else if (sentence[i][j].charAt(0)=="n") {
             lines=1;
           }
-          else if (sentence[i][j].charAt(0)=='p') {
+          else if (sentence[i][j].charAt(0)=="p") {
             lines=2;
           }
           for (int k=0;k<lines;k++) {
@@ -501,7 +501,7 @@ void writeSentence(int type) {
           }
           if (sentence[i][j].length()>1) {
             int vowelIndex=1;
-            if (sentence[i][j].charAt(1)=='@') {
+            if (sentence[i][j].charAt(1)=="@") {
               ellipse(tempX, tempY, letterRadius*2.3, letterRadius*2.3);
               vowelIndex=2;
             }
@@ -509,15 +509,15 @@ void writeSentence(int type) {
               pos-=TWO_PI/sentence[i].length;
               continue;
             }
-            if (sentence[i][j].charAt(vowelIndex)=='a') {
+            if (sentence[i][j].charAt(vowelIndex)=="a") {
               tempX=x[i]+cos(pos)*(wordRadius[i]+letterRadius/2);
               tempY=y[i]+sin(pos)*(wordRadius[i]+letterRadius/2);
               ellipse(tempX, tempY, letterRadius, letterRadius);
             }
-            else if (sentence[i][j].charAt(vowelIndex)=='e') {
+            else if (sentence[i][j].charAt(vowelIndex)=="e") {
               ellipse(tempX, tempY, letterRadius, letterRadius);
             }
-            else if (sentence[i][j].charAt(vowelIndex)=='i') {
+            else if (sentence[i][j].charAt(vowelIndex)=="i") {
               ellipse(tempX, tempY, letterRadius, letterRadius);
               lineX=append(lineX, tempX);
               lineY=append(lineY, tempY);
@@ -525,12 +525,12 @@ void writeSentence(int type) {
               arcEnd=append(arcEnd, pos+3*PI/2);
               lineRad=append(lineRad, letterRadius);
             }
-            else if (sentence[i][j].charAt(vowelIndex)=='o') {
+            else if (sentence[i][j].charAt(vowelIndex)=="o") {
               tempX=x[i]+cos(pos)*(wordRadius[i]-letterRadius*2);
               tempY=y[i]+sin(pos)*(wordRadius[i]-letterRadius*2);
               ellipse(tempX, tempY, letterRadius, letterRadius);
             }
-            else if (sentence[i][j].charAt(vowelIndex)=='u') {
+            else if (sentence[i][j].charAt(vowelIndex)=="u") {
               ellipse(tempX, tempY, letterRadius, letterRadius);
               lineX=append(lineX, tempX);
               lineY=append(lineY, tempY);
@@ -539,13 +539,13 @@ void writeSentence(int type) {
               lineRad=append(lineRad, letterRadius);
             }
             if (sentence[i][j].length()==(vowelIndex+2)) {
-              if (sentence[i][j].charAt(vowelIndex+1)=='@') {
+              if (sentence[i][j].charAt(vowelIndex+1)=="@") {
                 ellipse(tempX, tempY, letterRadius*1.3, letterRadius*1.3);
               }
             }
           }
         }
-        if (sentence[i][j].charAt(0)=='t'||sentence[i][j].charAt(0)=='$'||sentence[i][j].charAt(0)=='r'||sentence[i][j].charAt(0)=='s'||sentence[i][j].charAt(0)=='v'||sentence[i][j].charAt(0)=='w') {
+        if (sentence[i][j].charAt(0)=="t"||sentence[i][j].charAt(0)=="$"||sentence[i][j].charAt(0)=="r"||sentence[i][j].charAt(0)=="s"||sentence[i][j].charAt(0)=="v"||sentence[i][j].charAt(0)=="w") {
           tempX=x[i]+cos(pos)*(wordRadius[i]);
           tempY=y[i]+sin(pos)*(wordRadius[i]);
           int nextIndex;
@@ -572,7 +572,7 @@ void writeSentence(int type) {
             makeArcs(tempX, tempY, x[i], y[i], wordRadius[i], letterRadius*1.5, pos-PI/sentence[i].length, pos+PI/sentence[i].length);
           }
           int lines=0;
-          if (sentence[i][j].charAt(0)=='$') {
+          if (sentence[i][j].charAt(0)=="$") {
             if (nested[i][j]) {
               makeDots(x[nextIndex], y[nextIndex], (wordRadius[nextIndex]*1.4)+14, 2, angle1, wordRadius[nextIndex]/500);
             }
@@ -580,7 +580,7 @@ void writeSentence(int type) {
               makeDots(tempX, tempY, letterRadius*2.6, 2, pos, 0.5);
             }
           }
-          else if (sentence[i][j].charAt(0)=='r') {
+          else if (sentence[i][j].charAt(0)=="r") {
             if (nested[i][j]) {
               makeDots(x[nextIndex], y[nextIndex], (wordRadius[nextIndex]*1.4)+14, 3, angle1, wordRadius[nextIndex]/500);
             }
@@ -588,13 +588,13 @@ void writeSentence(int type) {
               makeDots(tempX, tempY, letterRadius*2.6, 3, pos, 0.5);
             }
           }
-          else if (sentence[i][j].charAt(0)=='s') {
+          else if (sentence[i][j].charAt(0)=="s") {
             lines=3;
           }
-          else if (sentence[i][j].charAt(0)=='v') {
+          else if (sentence[i][j].charAt(0)=="v") {
             lines=1;
           }
-          else if (sentence[i][j].charAt(0)=='w') {
+          else if (sentence[i][j].charAt(0)=="w") {
             lines=2;
           }
           if (nested[i][j]) {
@@ -616,7 +616,7 @@ void writeSentence(int type) {
             }
           }
           if (sentence[i][j].length()>1) {
-            if (sentence[i][j].charAt(1)=='@') {
+            if (sentence[i][j].charAt(1)=="@") {
               if (nested[i][j]) {
                 makeArcs(x[nextIndex], y[nextIndex], x[i], y[i], wordRadius[i], (wordRadius[nextIndex]+20)*1.2, pos+TWO_PI, pos-TWO_PI);
               }
@@ -626,25 +626,25 @@ void writeSentence(int type) {
             }
           }
         }
-        if (sentence[i][j].charAt(0)=='%'||sentence[i][j].charAt(0)=='y'||sentence[i][j].charAt(0)=='z'||sentence[i][j].charAt(0)=='&'||sentence[i][j].charAt(0)=='q'||sentence[i][j].charAt(0)=='x') {
+        if (sentence[i][j].charAt(0)=="%"||sentence[i][j].charAt(0)=="y"||sentence[i][j].charAt(0)=="z"||sentence[i][j].charAt(0)=="&"||sentence[i][j].charAt(0)=="q"||sentence[i][j].charAt(0)=="x") {
           tempX=x[i]+cos(pos)*(wordRadius[i]);
           tempY=y[i]+sin(pos)*(wordRadius[i]);
           ellipse(tempX, tempY, letterRadius*2, letterRadius*2);
           arc(x[i], y[i], wordRadius[i]*2, wordRadius[i]*2, pos-PI/sentence[i].length, pos+PI/sentence[i].length);
           int lines=0;
-          if (sentence[i][j].charAt(0)=='y') {
+          if (sentence[i][j].charAt(0)=="y") {
             makeDots(tempX, tempY, letterRadius, 2, pos, 1);
           }
-          else if (sentence[i][j].charAt(0)=='z') {
+          else if (sentence[i][j].charAt(0)=="z") {
             makeDots(tempX, tempY, letterRadius, 3, pos, 1);
           }
-          else if (sentence[i][j].charAt(0)=='&') {
+          else if (sentence[i][j].charAt(0)=="&") {
             lines=3;
           }
-          else if (sentence[i][j].charAt(0)=='q') {
+          else if (sentence[i][j].charAt(0)=="q") {
             lines=1;
           }
-          else if (sentence[i][j].charAt(0)=='x') {
+          else if (sentence[i][j].charAt(0)=="x") {
             lines=2;
           }
           for (int k=0;k<lines;k++) {
@@ -656,7 +656,7 @@ void writeSentence(int type) {
           }
           if (sentence[i][j].length()>1) {
             int vowelIndex=1;
-            if (sentence[i][j].charAt(1)=='@') {
+            if (sentence[i][j].charAt(1)=="@") {
               ellipse(tempX, tempY, letterRadius*2.3, letterRadius*2.3);
               vowelIndex=2;
             }
@@ -664,15 +664,15 @@ void writeSentence(int type) {
               pos-=TWO_PI/sentence[i].length;
               continue;
             }
-            if (sentence[i][j].charAt(vowelIndex)=='a') {
+            if (sentence[i][j].charAt(vowelIndex)=="a") {
               tempX=x[i]+cos(pos)*(wordRadius[i]+letterRadius/2);
               tempY=y[i]+sin(pos)*(wordRadius[i]+letterRadius/2);
               ellipse(tempX, tempY, letterRadius, letterRadius);
             }
-            else if (sentence[i][j].charAt(vowelIndex)=='e') {
+            else if (sentence[i][j].charAt(vowelIndex)=="e") {
               ellipse(tempX, tempY, letterRadius, letterRadius);
             }
-            else if (sentence[i][j].charAt(vowelIndex)=='i') {
+            else if (sentence[i][j].charAt(vowelIndex)=="i") {
               ellipse(tempX, tempY, letterRadius, letterRadius);
               lineX=append(lineX, tempX);
               lineY=append(lineY, tempY);
@@ -680,12 +680,12 @@ void writeSentence(int type) {
               arcEnd=append(arcEnd, pos+3*PI/2);
               lineRad=append(lineRad, letterRadius);
             }
-            else if (sentence[i][j].charAt(vowelIndex)=='o') {
+            else if (sentence[i][j].charAt(vowelIndex)=="o") {
               tempX=x[i]+cos(pos)*(wordRadius[i]-letterRadius);
               tempY=y[i]+sin(pos)*(wordRadius[i]-letterRadius);
               ellipse(tempX, tempY, letterRadius, letterRadius);
             }
-            else if (sentence[i][j].charAt(vowelIndex)=='u') {
+            else if (sentence[i][j].charAt(vowelIndex)=="u") {
               ellipse(tempX, tempY, letterRadius, letterRadius);
               lineX=append(lineX, tempX);
               lineY=append(lineY, tempY);
@@ -694,7 +694,7 @@ void writeSentence(int type) {
               lineRad=append(lineRad, letterRadius);
             }
             if (sentence[i][j].length()==(vowelIndex+2)) {
-              if (sentence[i][j].charAt(vowelIndex+1)=='@') {
+              if (sentence[i][j].charAt(vowelIndex+1)=="@") {
                 ellipse(tempX, tempY, letterRadius*1.8, letterRadius*1.8);
               }
             }
