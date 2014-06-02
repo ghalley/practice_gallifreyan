@@ -7,9 +7,9 @@ void setup() {
   smooth();
   size(1024, 600);
   background(bg);
-  font = loadFont("Futura-Medium-15.vlw");
+//  font = loadFont("Futura-Medium-15.vlw");
   fill(fg);
-  textFont(font);
+//  textFont(font);
   text(english,15,30);
   stroke(fg);
   strokeWeight(1);
@@ -33,7 +33,7 @@ void draw(){
 
 void keyPressed(){
   if(english=="Enter text here and press return."&&keyCode!=SHIFT){
-    english=""+key;
+    english=""+str(key);
     background(bg);
     text(english,15,30);
   }else if (keyCode==SHIFT){
@@ -66,7 +66,7 @@ void keyPressed(){
     english=tempEnglish;
     text(english,15,30);
   }else{
-    english=english+key;
+    english=english+str(key);
     background(bg);
     text(english,15,30);
   }
@@ -133,7 +133,9 @@ void writeSentence(int type) {
   String[] Sentence= {
   };
   Sentence=split(english, " ");
+
   String[][] sentence = new String[Sentence.length][];
+
   char[] punctuation = new char[Sentence.length];
   boolean[][] apostrophes = new boolean[Sentence.length][100];
   for (int j=0;j<Sentence.length;j++) {
@@ -280,6 +282,8 @@ void writeSentence(int type) {
     if (index==sentence[i].length) {
       index=0;
     }
+    println(i);
+    println(sentence.length);
     char tempChar=sentence[i][index].charAt(0);
     if ((tempChar=='t'||tempChar=='$'||tempChar=='r'||tempChar=='s'||tempChar=='v'||tempChar=='w')&&type>0) {
       nested[i][index]=true;
