@@ -1,1 +1,32 @@
-<canvas data-processing-sources=<%= asset_path 'Gallifreyan/Gallifreyan.pde'%>></canvas>
+<form onsubmit="text_to_processing()">
+  <label>Enter text here:</label>
+  <input type='text'>
+  <button type="button" id='create_text'>Create Gallifreyan</button>
+</form>
+
+<canvas id='sketch' data-processing-sources=<%= asset_path 'Gallifreyan/Gallifreyan.pde'%>></canvas>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $(window).keydown(function(event){
+      if(event.keyCode == 13) {
+        event.preventDefault();
+        return false;
+      }
+    });
+
+    $('input').keydown(function(event) {
+      if (event.keyCode == 13) {
+        text_to_processing();
+      };
+    });
+
+    $('#create_text').click(function(event) {
+      text_to_processing();
+    });
+  })
+
+  function text_to_processing() {
+    sketch = Processing.getInstanceById('sketch');
+    sketch.accept_text($('input').val());
+  }
+</script>

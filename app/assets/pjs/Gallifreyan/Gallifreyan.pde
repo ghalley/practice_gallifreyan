@@ -1,16 +1,12 @@
 color bg = color(255);
 color fg = color(0);
-String english = "Enter text here and press return.";
-PFont font;
+String english = "";
 
 void setup() {
   smooth();
-  size(1024, 600);
+  size(1024, 800);
   background(bg);
-//  font = loadFont("Futura-Medium-15.vlw");
   fill(fg);
-//  textFont(font);
-  text(english,15,30);
   stroke(fg);
   strokeWeight(1);
   noFill();
@@ -19,16 +15,11 @@ void setup() {
 
 float count=0;
 
-//TODO: SVG EXPORT!
+float sentenceRadius = 256;
+float float1=0;
+float float2=0;
 
 void draw(){
-  // if(keyPressed&&keyCode==CONTROL){
-  //   String tempEnglish=english;
-  //   transliterate();
-  //   english=tempEnglish;
-  //   text(english,15,30);
-  //   count+=0.02;
-  // }
 }
 
 void keyPressed(){
@@ -41,7 +32,7 @@ void keyPressed(){
   }else if (keyCode==TAB){
     stroke(bg);
     strokeWeight(400);
-    ellipse(width/2,height/2,(sentenceRadius+222)*2,(sentenceRadius+222)*2);
+    ellipse(width/2,((height/2 - 100) - 50),(sentenceRadius+222)*2,(sentenceRadius+222)*2);
     saveFrame(english+" ####.png");
     text("Your image has been saved to the",15,30);
     text("folder that contains this program.",15,50);
@@ -72,7 +63,11 @@ void keyPressed(){
   }
 }
 
-float sentenceRadius = 256;
+void accept_text(text) {
+  english = str(text);
+  transliterate();
+}
+
 
 void transliterate(){
   english=english.toLowerCase();
@@ -88,7 +83,7 @@ void transliterate(){
   int spaces=0;
   int sentences=1;
   for (int i=0;i<english.length();i++) {
-    
+
     if (english.charAt(i)=="c") {
       text("ERROR: Please replace every C with a K or an S.",15,60);
       return;
@@ -111,10 +106,6 @@ void transliterate(){
     text("ERROR: Multiple sentences are not yet supported.",15,60);
     return;
   }
-  text("Press return again for another version.",15,60);
-  text("Hold control to animate.",15,120);
-  text("Press alt to randomize colors.",15,90);
-  text("Press tab to save image.",15,150);
 }
 
 void writeSentence(int type) {
@@ -182,10 +173,10 @@ void writeSentence(int type) {
   stroke(fg);
   if (type>0) {
     strokeWeight(3);
-    ellipse(width/2, height/2, sentenceRadius*2, sentenceRadius*2);
+    ellipse(width/2, (height/2 - 100), sentenceRadius*2, sentenceRadius*2);
   }
   strokeWeight(4);
-  ellipse(width/2, height/2, sentenceRadius*2+40, sentenceRadius*2+40);
+  ellipse(width/2, (height/2 - 100), sentenceRadius*2+40, sentenceRadius*2+40);
   float pos=PI/2;
   float maxRadius=0;
   for (int i=0;i<sentence.length;i++) {
@@ -206,31 +197,31 @@ void writeSentence(int type) {
   stroke(fg);
   for (int i=0;i<sentence.length;i++) {
     x=append(x, width/2+distance*cos(pos));
-    y=append(y, height/2+distance*sin(pos));
+    y=append(y, (height/2 - 100)+distance*sin(pos));
     int nextIndex=0;
     if (i!=sentence.length-1) {
       nextIndex=i+1;
     }
     pos-=float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*TWO_PI;
     float pX = width/2+cos(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*sentenceRadius;
-    float pY = height/2+sin(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*sentenceRadius;
+    float pY = (height/2 - 100)+sin(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*sentenceRadius;
     switch(punctuation[i]){
       case ".":
         ellipse(pX,pY,20,20);
         break;
       case "?":
-        makeDots(width/2,height/2,sentenceRadius*1.4,2,-1.2,0.1);
+        makeDots(width/2,(height/2 - 100),sentenceRadius*1.4,2,-1.2,0.1);
         break;
       case "!":
-        makeDots(width/2,height/2,sentenceRadius*1.4,3,-1.2,0.1);
+        makeDots(width/2,(height/2 - 100),sentenceRadius*1.4,3,-1.2,0.1);
         break;
       case "\"":
-        line(width/2+cos(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*sentenceRadius,height/2+sin(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*sentenceRadius,width/2+cos(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*(sentenceRadius+20),height/2+sin(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*(sentenceRadius+20));
+        line(width/2+cos(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*sentenceRadius,(height/2 - 100)+sin(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*sentenceRadius,width/2+cos(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*(sentenceRadius+20),(height/2 - 100)+sin(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*(sentenceRadius+20));
         break;
       case "-":
-        line(width/2+cos(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*sentenceRadius,height/2+sin(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*sentenceRadius,width/2+cos(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*(sentenceRadius+20),height/2+sin(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*(sentenceRadius+20));
-        line(width/2+cos(pos+(sentence[i].length+sentence[nextIndex].length+0.3)/(2*charCount)*PI)*sentenceRadius,height/2+sin(pos+(sentence[i].length+sentence[nextIndex].length+0.2)/(2*charCount)*PI)*sentenceRadius,width/2+cos(pos+(sentence[i].length+sentence[nextIndex].length+0.2)/(2*charCount)*PI)*(sentenceRadius+20),height/2+sin(pos+(sentence[i].length+sentence[nextIndex].length+0.3)/(2*charCount)*PI)*(sentenceRadius+20));
-        line(width/2+cos(pos+(sentence[i].length+sentence[nextIndex].length-0.3)/(2*charCount)*PI)*sentenceRadius,height/2+sin(pos+(sentence[i].length+sentence[nextIndex].length-0.2)/(2*charCount)*PI)*sentenceRadius,width/2+cos(pos+(sentence[i].length+sentence[nextIndex].length-0.2)/(2*charCount)*PI)*(sentenceRadius+20),height/2+sin(pos+(sentence[i].length+sentence[nextIndex].length-0.3)/(2*charCount)*PI)*(sentenceRadius+20));
+        line(width/2+cos(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*sentenceRadius,(height/2 - 100)+sin(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*sentenceRadius,width/2+cos(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*(sentenceRadius+20),(height/2 - 100)+sin(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*(sentenceRadius+20));
+        line(width/2+cos(pos+(sentence[i].length+sentence[nextIndex].length+0.3)/(2*charCount)*PI)*sentenceRadius,(height/2 - 100)+sin(pos+(sentence[i].length+sentence[nextIndex].length+0.2)/(2*charCount)*PI)*sentenceRadius,width/2+cos(pos+(sentence[i].length+sentence[nextIndex].length+0.2)/(2*charCount)*PI)*(sentenceRadius+20),(height/2 - 100)+sin(pos+(sentence[i].length+sentence[nextIndex].length+0.3)/(2*charCount)*PI)*(sentenceRadius+20));
+        line(width/2+cos(pos+(sentence[i].length+sentence[nextIndex].length-0.3)/(2*charCount)*PI)*sentenceRadius,(height/2 - 100)+sin(pos+(sentence[i].length+sentence[nextIndex].length-0.2)/(2*charCount)*PI)*sentenceRadius,width/2+cos(pos+(sentence[i].length+sentence[nextIndex].length-0.2)/(2*charCount)*PI)*(sentenceRadius+20),(height/2 - 100)+sin(pos+(sentence[i].length+sentence[nextIndex].length-0.3)/(2*charCount)*PI)*(sentenceRadius+20));
         break;
       case ",":
         fill(fg);
@@ -239,7 +230,7 @@ void writeSentence(int type) {
         break;
       case ";":
         fill(fg);
-        ellipse(width/2+cos(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*sentenceRadius-10,height/2+sin(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*sentenceRadius-10,10,10);
+        ellipse(width/2+cos(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*sentenceRadius-10,(height/2 - 100)+sin(pos+float(sentence[i].length+sentence[nextIndex].length)/(2*charCount)*PI)*sentenceRadius-10,10,10);
         noFill();
         break;
       case ":":
@@ -263,7 +254,12 @@ void writeSentence(int type) {
     else {
       otherIndex=i+1;
     }
-    angle1=atan((y[i]-y[otherIndex])/(x[i]-x[otherIndex]));
+    if (x[i]-x[otherIndex] == 0) {
+      angle1=atan((y[i]-y[otherIndex])/1);
+    } else {
+      angle1=atan((y[i]-y[otherIndex])/(x[i]-x[otherIndex]));
+    }
+
     if (dist(x[i]+(cos(angle1)*20), y[i]+(sin(angle1)*20), x[otherIndex], y[otherIndex])>dist(x[i], y[i], x[otherIndex], y[otherIndex])) {
       angle1-=PI;
     }
@@ -307,7 +303,7 @@ void writeSentence(int type) {
   if (type==0) {
     wordRadius[0]=sentenceRadius*0.9;
     x[0]=width/2;
-    y[0]=height/2;
+    y[0]=(height/2 - 100);
   }
   for (int i=0;i<sentence.length;i++) {
     pos=PI/2;
@@ -318,7 +314,7 @@ void writeSentence(int type) {
         float d=0;
         float tempX=x[i];
         float tempY=y[i];
-        while (pow (tempX-width/2, 2)+pow(tempY-height/2, 2)<pow(sentenceRadius+20, 2)) {
+        while (pow (tempX-width/2, 2)+pow(tempY-(height/2 - 100), 2)<pow(sentenceRadius+20, 2)) {
           tempX=x[i]+cos(a)*d;
           tempY=y[i]+sin(a)*d;
           d+=1;
@@ -328,7 +324,7 @@ void writeSentence(int type) {
         d=0;
         tempX=x[i];
         tempY=y[i];
-        while (pow (tempX-width/2, 2)+pow(tempY-height/2, 2)<pow(sentenceRadius+20, 2)) {
+        while (pow (tempX-width/2, 2)+pow(tempY-(height/2 - 100), 2)<pow(sentenceRadius+20, 2)) {
           tempX=x[i]+cos(a)*d;
           tempY=y[i]+sin(a)*d;
           d+=1;
@@ -758,7 +754,7 @@ void writeSentence(int type) {
       float d=0;
       float tempX=lineX[i]+cos(a)*d;
       float tempY=lineY[i]+sin(a)*d;
-      while (pow (tempX-width/2, 2)+pow(tempY-height/2, 2)<pow(sentenceRadius+20, 2)) {
+      while (pow (tempX-width/2, 2)+pow(tempY-(height/2 - 100), 2)<pow(sentenceRadius+20, 2)) {
         tempX=lineX[i]+cos(a)*d;
         tempY=lineY[i]+sin(a)*d;
         d+=1;
@@ -817,8 +813,7 @@ void makeDots(float mX, float mY, float r, int amnt, float pos, float scaleFacto
   stroke(fg);
 }
 
-float float1=0;
-float float2=0;
+
 
 void makeArcs(float mX, float mY, float nX, float nY, float r1, float r2, float begin, float end) {
   float theta;
