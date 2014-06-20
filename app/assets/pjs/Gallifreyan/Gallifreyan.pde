@@ -22,48 +22,14 @@ float float2=0;
 void draw(){
 }
 
-void keyPressed(){
-  if(english=="Enter text here and press return."&&keyCode!=SHIFT){
-    english=""+str(key);
-    background(bg);
-    text(english,15,30);
-  }else if (keyCode==SHIFT){
-  }else if (keyCode==CONTROL){
-  }else if (keyCode==TAB){
-    stroke(bg);
-    strokeWeight(400);
-    ellipse(width/2,((height/2 - 100) - 50),(sentenceRadius+222)*2,(sentenceRadius+222)*2);
-    saveFrame(english+" ####.png");
-    text("Your image has been saved to the",15,30);
-    text("folder that contains this program.",15,50);
-  }else if (keyCode==ALT){
-    bg=color(random(255),random(255),random(255));
-    fg=color(random(255),random(255),random(255));
-    String tempEnglish=english;
-    transliterate();
-    english=tempEnglish;
-    text(english,15,30);
-  }else if (keyCode==DELETE||keyCode==BACKSPACE){
-    String oldenglish=english;
-    english="";
-    for(int n=0;n<oldenglish.length()-1;n++){
-      english=english+oldenglish.charAt(n);
-    }
-    background(bg);
-    text(english,15,30);
-  }else if (keyCode==RETURN||keyCode==ENTER){
-    String tempEnglish=english;
-    transliterate();
-    english=tempEnglish;
-    text(english,15,30);
-  }else{
-    english=english+str(key);
-    background(bg);
-    text(english,15,30);
-  }
 void save_image() {
   saveFrame("/../" + english+" ####.png");
 }
+
+void change_background() {
+  bg=color(random(255),random(255),random(255));
+  String tempEnglish=english;
+  transliterate();
 }
 
 void accept_text(text) {

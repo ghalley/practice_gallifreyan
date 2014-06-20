@@ -3,6 +3,7 @@
   <input type='text'>
   <button type="button" id='create_text'>Create Gallifreyan</button>
   <button type="button" id='save_image'>Save Image</button>
+  <button type="button" id='change_bg'>Change Background</button>
 </form>
 
 <canvas id='sketch' data-processing-sources=<%= asset_path 'Gallifreyan/Gallifreyan.pde'%>></canvas>
@@ -28,6 +29,10 @@
     $('#save_image').click(function(event) {
       save_image();
     });
+
+    $('#change_bg').click(function(event) {
+      change_bg();
+    });
   })
 
   function text_to_processing() {
@@ -38,5 +43,10 @@
   function save_image() {
     sketch = Processing.getInstanceById('sketch');
     sketch.save_image();
+  }
+
+  function change_bg() {
+    sketch = Processing.getInstanceById('sketch');
+    sketch.change_background();
   }
 </script>
