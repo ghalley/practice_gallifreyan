@@ -4,6 +4,7 @@
   <button type="button" id='create_text'>Create Gallifreyan</button>
   <button type="button" id='save_image'>Save Image</button>
   <button type="button" id='change_bg'>Change Background</button>
+  <button type="button" id='reset'>Reset</button>
 </form>
 
 <canvas id='sketch' data-processing-sources=<%= asset_path 'Gallifreyan/Gallifreyan.pde'%>></canvas>
@@ -32,6 +33,11 @@
 
     $('#change_bg').click(function(event) {
       change_bg();
+    });
+
+    $('#reset').click(function(event) {
+      sketch = Processing.getInstanceById('sketch');
+      sketch.setup();
     });
   })
 

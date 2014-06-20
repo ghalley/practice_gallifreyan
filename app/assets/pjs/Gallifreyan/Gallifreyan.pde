@@ -5,12 +5,13 @@ String english = "";
 void setup() {
   smooth();
   size(1024, 800);
-  background(bg);
+  background(color(255));
   fill(fg);
   stroke(fg);
   strokeWeight(1);
   noFill();
   frameRate(30);
+  english = "";
 }
 
 float count=0;
