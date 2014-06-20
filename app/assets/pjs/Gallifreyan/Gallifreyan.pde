@@ -61,13 +61,15 @@ void keyPressed(){
     background(bg);
     text(english,15,30);
   }
+void save_image() {
+  saveFrame("/../" + english+" ####.png");
+}
 }
 
 void accept_text(text) {
   english = str(text);
   transliterate();
 }
-
 
 void transliterate(){
   english=english.toLowerCase();

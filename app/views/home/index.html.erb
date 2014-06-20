@@ -2,6 +2,7 @@
   <label>Enter text here:</label>
   <input type='text'>
   <button type="button" id='create_text'>Create Gallifreyan</button>
+  <button type="button" id='save_image'>Save Image</button>
 </form>
 
 <canvas id='sketch' data-processing-sources=<%= asset_path 'Gallifreyan/Gallifreyan.pde'%>></canvas>
@@ -23,10 +24,19 @@
     $('#create_text').click(function(event) {
       text_to_processing();
     });
+
+    $('#save_image').click(function(event) {
+      save_image();
+    });
   })
 
   function text_to_processing() {
     sketch = Processing.getInstanceById('sketch');
     sketch.accept_text($('input').val());
+  }
+
+  function save_image() {
+    sketch = Processing.getInstanceById('sketch');
+    sketch.save_image();
   }
 </script>
