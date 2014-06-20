@@ -85,8 +85,7 @@ void transliterate(){
   for (int i=0;i<english.length();i++) {
 
     if (english.charAt(i)=="c") {
-      text("ERROR: Please replace every C with a K or an S.",15,60);
-      return;
+      english[i] = "k";
     }
     if (english.charAt(i)==" ") {
       spaces++;
